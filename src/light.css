@@ -1,0 +1,7 @@
+/* light.css: 👉 dark-on-light */
+:root {
+  --color: rgb(10, 10, 10);
+  --background-color: rgb(238, 238, 238);
+  --badge-bg: rgb(224 224 224);
+  --badge-border: 1px dashed var(--color);
+}
