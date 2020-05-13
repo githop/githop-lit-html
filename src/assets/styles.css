@@ -1,11 +1,9 @@
 :root {
+  color-scheme: dark light;
   --gth-green: #bfe600;
   --gth-red: #f90050;
   --br-size: 0.1rem;
   --gth-border: var(--br-size) dashed var(--gth-red);
-
-  supported-color-schemes: dark light;
-  color-scheme: dark light;
   --duration: 0.3s;
   --timing: ease;
   --header-font-family: 'Space Mono', monospace;

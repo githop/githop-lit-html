@@ -29,7 +29,12 @@ export default {
     typescript(),
     resolveRollup(), // tells Rollup how to find date-fns in node_modules
     commonjs(), // converts date-fns to ES modules
-    copy({ targets: [{ src: 'src/**/*.css', dest: 'public' }] }),
+    copy({
+      targets: [
+        { src: 'src/**/*.css', dest: 'public/assets' },
+        { src: 'src/assets/favicon.ico', dest: 'public' },
+      ],
+    }),
     html({ template }),
     production && terser(), // minify, but only in production
     production && generateSW(workboxConfig), //

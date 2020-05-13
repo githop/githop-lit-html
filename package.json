@@ -29,7 +29,9 @@
   "scripts": {
     "clean": "rm -rf public/*",
     "dev": "yarn clean && rollup -c rollup.config.js -w",
-    "rollup": "rollup -c rollup.config.js --environment BUILD:development",
-    "serve": "es-dev-server --app-index index.html --root-dir public --open"
+    "rollup": "rollup -c rollup.config.js",
+    "serve": "es-dev-server --app-index index.html --root-dir public --open",
+    "build": "yarn clean && yarn rollup",
+    "firebase": "firebase deploy --only hosting"
   }
 }
