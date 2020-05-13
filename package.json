@@ -32,6 +32,7 @@
     "rollup": "rollup -c rollup.config.js",
     "serve": "es-dev-server --app-index index.html --root-dir public --open",
     "build": "yarn clean && yarn rollup",
-    "firebase": "firebase deploy --only hosting"
+    "firebase": "firebase deploy --only hosting",
+    "release": "yarn build && yarn firebase"
   }
 }
