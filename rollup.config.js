@@ -6,7 +6,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import html from '@rollup/plugin-html';
 import copy from 'rollup-plugin-copy';
 import { terser } from 'rollup-plugin-terser';
-import { generateSW } from 'rollup-plugin-workbox';
+import { injectManifest } from 'rollup-plugin-workbox';
 
 const workboxConfig = require('./workbox-config.js');
 
@@ -37,6 +37,10 @@ export default {
     }),
     html({ template }),
     production && terser(), // minify, but only in production
-    production && generateSW(workboxConfig), //
+    production && injectManifest(workboxConfig, render), //
   ],
 };
+
+function render({ swDest, count, size }) {
+  console.log('📦', swDest, '#️⃣', count, '🐘', size);
+}
