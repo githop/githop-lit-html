@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-
 <html lang="en">
   <head>
     <title>githop</title>
     <meta charset="utf-8" />
+    <meta name="Description" content="Personal website for a web developer." />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="dark light" />
@@ -63,5 +63,19 @@
   </head>
   <body>
     <script src="/index.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-56739309-2"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-56739309-2');
+    </script>
   </body>
 </html>
