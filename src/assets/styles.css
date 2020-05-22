@@ -1,7 +1,7 @@
 :root {
   color-scheme: dark light;
   --gth-green: #bfe600;
-  --gth-red: #f90050;
+  --gth-red: #d9003a;
   --br-size: 0.1rem;
   --gth-border: var(--br-size) dashed var(--gth-red);
   --duration: 0.3s;
