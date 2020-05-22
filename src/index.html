@@ -19,14 +19,6 @@
           '<link rel="stylesheet" href="assets/light.css" onload="document.documentElement.style.display = ``">'
         );
       }
-
-      // Check that service workers are supported
-      if ('serviceWorker' in navigator) {
-        // Use the window load event to keep the page load performant
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/service-worker.js');
-        });
-      }
     </script>
 
     <!--
@@ -62,7 +54,7 @@
     />
   </head>
   <body>
-    <script src="/index.js"></script>
+    <!-- <script src="/index.js"></script> -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
       async

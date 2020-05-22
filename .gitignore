@@ -1,4 +1,5 @@
 node_modules
 public
+generated
 .DS_Store
 .firebase

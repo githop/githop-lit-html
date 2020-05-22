@@ -1,12 +1,13 @@
-import { readFileSync } from 'fs';
+import { readFile } from 'fs';
 import { resolve } from 'path';
 import typescript from '@rollup/plugin-typescript';
 import resolveRollup from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import html from '@rollup/plugin-html';
+import html from '@open-wc/rollup-plugin-html';
 import copy from 'rollup-plugin-copy';
 import { terser } from 'rollup-plugin-terser';
-import { injectManifest } from 'rollup-plugin-workbox';
+import injectManifest from 'rollup-plugin-workbox-inject';
+import replace from '@rollup/plugin-replace';
 
 const workboxConfig = require('./workbox-config.js');
 
@@ -14,33 +15,55 @@ const workboxConfig = require('./workbox-config.js');
 // `npm run dev` -> `production` is false
 const production = !process.env.ROLLUP_WATCH;
 
-const template = () =>
-  readFileSync(resolve(__dirname + '/src/index.html'), 'utf-8');
+const output = (format = 'esm') => ({
+  dir: './public',
+  format,
+  sourcemap: true,
+});
 
-/** @type {import('rollup').RollupOptions} */
-export default {
-  input: 'src/index.ts',
-  output: {
-    dir: './public',
-    format: 'esm',
-    sourcemap: true,
-  },
-  plugins: [
+const template = () =>
+  new Promise((r) => {
+    readFile(resolve(__dirname + '/src/index.html'), 'utf8', (err, data) => {
+      r(data);
+    });
+  });
+
+const plugins = {
+  common: [
+    replace({
+      'process.env.NODE_ENV': JSON.stringify(
+        process.env.NODE_ENV || 'production'
+      ),
+    }),
     typescript(),
-    resolveRollup(), // tells Rollup how to find date-fns in node_modules
-    commonjs(), // converts date-fns to ES modules
+    resolveRollup({ browser: true }),
+    commonjs(),
+  ],
+  assets: [
     copy({
       targets: [
         { src: 'src/**/*.css', dest: 'public/assets' },
         { src: 'src/assets/favicon.ico', dest: 'public' },
       ],
     }),
-    html({ template }),
-    production && terser(), // minify, but only in production
-    production && injectManifest(workboxConfig, render), //
+    html({
+      template() {
+        return template();
+      },
+    }),
   ],
 };
 
-function render({ swDest, count, size }) {
-  console.log('📦', swDest, '#️⃣', count, '🐘', size);
-}
+/** @type {import('rollup').RollupOptions} */
+export default [
+  {
+    input: 'src/index.ts',
+    output: output(),
+    plugins: [...plugins.common, ...plugins.assets, production && terser()],
+  },
+  {
+    input: 'src/service-worker/sw.ts',
+    output: output('iife'),
+    plugins: [...plugins.common, injectManifest(workboxConfig), terser()],
+  },
+];
