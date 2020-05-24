@@ -1,8 +1,8 @@
-User-Agent: *
-Disallow: /
-
 User-Agent: Googlebot
-Allow: /index.html
+Allow:
 
 User-Agent: Googlebot-Mobile
-Allow: /index.html
+Allow:
+
+User-Agent: *
+Disallow: /
