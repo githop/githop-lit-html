@@ -2,7 +2,7 @@ User-Agent: *
 Disallow: /
 
 User-Agent: Googlebot
-Allow: /
+Allow: /index.html
 
 User-Agent: Googlebot-Mobile
-Allow: /
+Allow: /index.html
