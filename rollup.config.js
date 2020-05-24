@@ -10,9 +10,6 @@ import injectManifest from 'rollup-plugin-workbox-inject';
 import replace from '@rollup/plugin-replace';
 
 const workboxConfig = require('./workbox-config.js');
-
-// `npm run build` -> `production` is true
-// `npm run dev` -> `production` is false
 const production = !process.env.ROLLUP_WATCH;
 
 const output = (format = 'esm') => ({
@@ -44,6 +41,7 @@ const plugins = {
       targets: [
         { src: 'src/**/*.css', dest: 'public/assets' },
         { src: 'src/assets/favicon.ico', dest: 'public' },
+        { src: 'robots.txt', dest: 'public' },
       ],
     }),
     html({
@@ -54,16 +52,23 @@ const plugins = {
   ],
 };
 
+const app = {
+  input: 'src/index.ts',
+  output: output(),
+  plugins: [...plugins.common, ...plugins.assets, production && terser()],
+};
+
+const sw = {
+  input: 'src/service-worker/sw.ts',
+  output: output('iife'),
+  plugins: [...plugins.common, injectManifest(workboxConfig), terser()],
+};
+
+const config = [app];
+
+if (production) {
+  config.push(sw);
+}
+
 /** @type {import('rollup').RollupOptions} */
-export default [
-  {
-    input: 'src/index.ts',
-    output: output(),
-    plugins: [...plugins.common, ...plugins.assets, production && terser()],
-  },
-  {
-    input: 'src/service-worker/sw.ts',
-    output: output('iife'),
-    plugins: [...plugins.common, injectManifest(workboxConfig), terser()],
-  },
-];
+export default config;

@@ -35,8 +35,7 @@
     "dev": "yarn clean && rollup -c rollup.config.js -w",
     "rollup": "rollup -c rollup.config.js",
     "serve": "es-dev-server --app-index index.html --root-dir public --open",
-    "copy": "cp src/index.html generated",
-    "build": "yarn clean && yarn copy && yarn rollup && yarn css",
+    "build": "yarn clean && yarn rollup && yarn css",
     "firebase": "firebase deploy --only hosting",
     "css": "postcss public/**/*.css --base public --dir public",
     "release": "yarn build && yarn firebase"
