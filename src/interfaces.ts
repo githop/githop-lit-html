@@ -49,3 +49,6 @@ export interface ResumeCards {
   type: CardTypes;
   content: Card[];
 }
+
+export const FB_ROOT = 'https://githop-backend.firebaseio.com';
+export const FB_URL = `${FB_ROOT}/resume.json`;

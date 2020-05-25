@@ -9,6 +9,7 @@ import {
   CardTypes,
   emojiMap,
   titleMap,
+  FB_URL,
 } from '../interfaces';
 
 export function Resume() {
@@ -79,8 +80,6 @@ function AccomplishmentList(accmp: Accomplishment[]) {
 }
 
 /* data */
-const FB_URL = 'https://githop-backend.firebaseio.com/resume.json';
-
 function fetchResumeData(): Promise<ResumeData> {
   return fetch(FB_URL)
     .then((response) => response.json())

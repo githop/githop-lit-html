@@ -2,5 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "lib": ["esnext", "webworker"]
-  }
+  },
+  "include": ["sw.ts", "../interfaces.ts"],
+  "exclude": []
 }
