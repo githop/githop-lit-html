@@ -3,13 +3,10 @@ export async function registerSw() {
 
   if ('serviceWorker' in navigator) {
     const wb = new Workbox('/sw.js');
-
     let registration: ServiceWorkerRegistration | undefined;
 
     const handleSwEv = (event: any) => {
-      console.log('event?', event);
-
-      const prompt = window.prompt('Updates!! Click ok to reload?');
+      const prompt = window.confirm('Updates!! Click ok to reload?');
 
       if (prompt) {
         // Assuming the user accepted the update, set up a listener
