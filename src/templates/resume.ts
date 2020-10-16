@@ -14,7 +14,7 @@ import {
 
 export function Resume() {
   return html`<div class="gth-resume --x-margin">
-    <h1>Resume</h1>
+    <h1>Tom Hopkins</h1>
     ${until(
       fetchResumeData().then(formatResumeData).then(CardList),
       html`<h1>loading</h1>`
