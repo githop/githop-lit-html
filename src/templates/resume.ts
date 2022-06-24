@@ -28,14 +28,10 @@ function CardList(cards: ResumeCards[]) {
       <div class="--y-padding gth-resume-section__header">
         <span class="--gth-emoji --x-margin">${emojiMap[card.type]}</span>
         <span>
-          <h2 class="--gth-underline">
-            ${titleMap[card.type]}
-          </h2>
+          <h2 class="--gth-underline">${titleMap[card.type]}</h2>
         </span>
       </div>
-      <div class="--gth-border">
-        ${card.content.map(CardTemplate)}
-      </div>
+      <div class="--gth-border">${card.content.map(CardTemplate)}</div>
     </div>`
   );
 }
@@ -60,7 +56,7 @@ function CardTemplate(card: Card) {
       </div>
       ${card.position != null && card.position.length > 0
         ? html` <div class="gth-card__position">
-            <h4>${card.position}</h4>
+            <h3>${card.position}</h3>
           </div>`
         : ''}
       <div class="gth-card__content">

@@ -1,7 +1,6 @@
 :root {
   color-scheme: dark light;
   --gth-green: #bfe600;
-  --gth-red: #d9003a;
   --br-size: 0.1rem;
   --gth-border: var(--br-size) dashed var(--gth-red);
   --duration: 0.3s;
@@ -35,6 +34,7 @@ h4,
 h5,
 h6 {
   font-family: var(--header-font-family);
+  text-align: center;
 }
 
 a {

@@ -4,4 +4,5 @@
   --background-color: rgb(238, 238, 238);
   --badge-bg: rgb(224 224 224);
   --badge-border: 1px dashed var(--color);
+  --gth-red: rgb(217 0 58);
 }

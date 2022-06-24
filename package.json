@@ -17,7 +17,7 @@
     "@typescript-eslint/eslint-plugin": "^2.30.0",
     "@typescript-eslint/parser": "^2.30.0",
     "cssnano": "^4.1.10",
-    "es-dev-server": "^1.50.6",
+    "es-dev-server": "^2.1.0",
     "eslint": "^6.8.0",
     "eslint-plugin-lit": "^1.2.0",
     "postcss-cli": "^7.1.1",
@@ -32,7 +32,8 @@
   },
   "scripts": {
     "clean": "rm -rf public/* generated/*",
-    "dev": "yarn clean && rollup -c rollup.config.js -w",
+    "dev:watch": "yarn clean && rollup -c rollup.config.js -w",
+    "dev": "yarn clean && rollup -c rollup.config.js",
     "rollup": "rollup -c rollup.config.js",
     "serve": "es-dev-server --app-index index.html --root-dir public --open",
     "build": "yarn clean && yarn rollup && yarn css",

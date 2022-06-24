@@ -15,7 +15,7 @@ const production = !process.env.ROLLUP_WATCH;
 const output = (format = 'esm') => ({
   dir: './public',
   format,
-  sourcemap: true,
+  sourcemap: !production,
 });
 
 const template = () =>
@@ -31,6 +31,7 @@ const plugins = {
       'process.env.NODE_ENV': JSON.stringify(
         process.env.NODE_ENV || 'production'
       ),
+      preventAssignment: true,
     }),
     typescript(),
     resolveRollup({ browser: true }),
